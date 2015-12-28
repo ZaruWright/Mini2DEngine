@@ -28,7 +28,7 @@ namespace Utils{
 		Vector3(const Vector3<T> &vector3) : x{ new T (*vector3.x) }, y{ new T(*vector3.y) }, z{ new T(*vector3.z) }{};
 
 		// Constructor by RValue
-		Vector3(const Vector3<T> &&vector3) : x{ nullptr }, y{ nullptr }, z{ nullptr } {
+		Vector3(Vector3<T> &&vector3) : x{ nullptr }, y{ nullptr }, z{ nullptr } {
 			
 			// Copy the data
 			*this = std::move(vector3);
@@ -38,6 +38,9 @@ namespace Utils{
 			delete vector3.x;
 			delete vector3.y;
 			delete vector3.z;
+			vector3.x = nullptr;
+			vector3.y = nullptr;
+			vector3.z = nullptr;
 
 		};
 
@@ -58,6 +61,9 @@ namespace Utils{
 				delete[] this->x;
 				delete[] this->y;
 				delete[] this->z;
+				this->x = nullptr;
+				this->y = nullptr;
+				this->z = nullptr;
 
 				// Copy the data (Also can do with move or even with = operator)
 				std::swap(x, vector3.x);
@@ -107,6 +113,15 @@ namespace Utils{
 
 			return this;
 		};
+
+		Vector3<T>& operator += (const Vector3<T> &vector3){
+
+			*this->x += *vector3.x;
+			*this->y += *vector3.y;
+			*this->z += *vector3.z;
+
+			return *this;
+		}
 
 
 		// Destructor

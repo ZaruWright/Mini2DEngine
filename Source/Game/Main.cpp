@@ -43,6 +43,10 @@ WinMain(HINSTANCE zhInstance, HINSTANCE prevInstance, LPSTR lpCmdLine, int nCmdS
 
 	Utils::Vector3<int> v5 = auxiliar<int>();
 
+	Utils::Vector3<int> v7 = v4 + v5;
+
+	v7 += v4;
+
 	return 0;
 }
 
