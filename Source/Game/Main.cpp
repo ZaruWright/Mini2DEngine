@@ -1,14 +1,6 @@
 #include "Game.h"
 #include <iostream>
-#include "Utils\Vector3.h"
 
-Utils::Vector3<int> v3;
-
-template <typename T>
-Utils::Vector3<T> auxiliar(){
-	Utils::Vector3<int> v5(2, 2, 2);
-	return v3 + v5;
-}
 
 /*#ifdef _DEBUG
 
@@ -23,7 +15,7 @@ WinMain(HINSTANCE zhInstance, HINSTANCE prevInstance, LPSTR lpCmdLine, int nCmdS
 {
 //#endif
 
-	/*Game::Game game;
+	Game::Game game;
 
 	if (!game.init()){
 		std::cerr << "Error while init the Game Engine. \n";
@@ -32,20 +24,7 @@ WinMain(HINSTANCE zhInstance, HINSTANCE prevInstance, LPSTR lpCmdLine, int nCmdS
 
 	game.run();
 	
-	game.release();*/
-
-	
-	Utils::Vector3<int> v4(3, 4, 5);
-
-	v3 = v4;
-
-	v4 = auxiliar<int>();
-
-	Utils::Vector3<int> v5 = auxiliar<int>();
-
-	Utils::Vector3<int> v7 = v4 + v5;
-
-	v7 += v4;
+	game.release();
 
 	return 0;
 }

@@ -95,30 +95,75 @@ namespace Utils{
 			return v3;
 		};
 
-		// NOT CHECKED!!!!!!
-		Vector3<T> operator + (Vector3<T> &&vector3){
-
-			*(this.x) += *vector3->x;
-			*(this.y) += *vector3->y;
-			*(this.z) += *vector3->z;
-
-			// Release the data pointer from the source object so that
-			// the destructor does not free the memory multiple times.
-			delete vector3.x;
-			delete vector3.y;
-			delete vector3.z;
-			vector3.x = nullptr;
-			vector3.y = nullptr;
-			vector3.z = nullptr;
-
-			return this;
-		};
-
+		// Plus Equal Operator
 		Vector3<T>& operator += (const Vector3<T> &vector3){
 
 			*this->x += *vector3.x;
 			*this->y += *vector3.y;
 			*this->z += *vector3.z;
+
+			return *this;
+		}
+
+		// Minus Operator
+		Vector3<T> operator - (Vector3<T> const &vector3){
+
+			Vector3<T> v3;
+			v3.x = new T(*this->x - *vector3.x);
+			v3.y = new T(*this->y - *vector3.y);
+			v3.z = new T(*this->z - *vector3.z);
+
+			return v3;
+		};
+
+		// Minus Equal Operator
+		Vector3<T>& operator -= (const Vector3<T> &vector3){
+
+			*this->x -= *vector3.x;
+			*this->y -= *vector3.y;
+			*this->z -= *vector3.z;
+
+			return *this;
+		}
+
+		// Multiply Operator
+		Vector3<T> operator * (Vector3<T> const &vector3){
+
+			Vector3<T> v3;
+			v3.x = new T(*this->x * *vector3.x);
+			v3.y = new T(*this->y * *vector3.y);
+			v3.z = new T(*this->z * *vector3.z);
+
+			return v3;
+		};
+
+		// Multiply Equal Operator
+		Vector3<T>& operator *= (const Vector3<T> &vector3){
+
+			*this->x *= *vector3.x;
+			*this->y *= *vector3.y;
+			*this->z *= *vector3.z;
+
+			return *this;
+		}
+
+		// Division Operator
+		Vector3<T> operator / (Vector3<T> const &vector3){
+
+			Vector3<T> v3;
+			v3.x = new T(*this->x / *vector3.x);
+			v3.y = new T(*this->y / *vector3.y);
+			v3.z = new T(*this->z / *vector3.z);
+
+			return v3;
+		};
+
+		// Division Equal Operator
+		Vector3<T>& operator /= (const Vector3<T> &vector3){
+
+			*this->x /= *vector3.x;
+			*this->y /= *vector3.y;
+			*this->z /= *vector3.z;
 
 			return *this;
 		}
