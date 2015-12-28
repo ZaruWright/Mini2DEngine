@@ -1,0 +1,5 @@
+/Exes
+/Projects/*/Debug
+/Projects/*/Release
+*.sdf
+*.v12.suo
