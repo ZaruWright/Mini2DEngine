@@ -168,6 +168,32 @@ namespace Utils{
 			return *this;
 		}
 
+		// Get x
+		T &getX(){
+			return x;
+		}
+
+		T getXValue(){
+			return *x;
+		}
+
+		// Get y
+		T &getY(){
+			return y;
+		}
+
+		T getYValue(){
+			return *y;
+		}
+
+		// Get z
+		T &getZ(){
+			return z;
+		}
+
+		T getZValue(){
+			return *z;
+		}
 
 		// Destructor
 		~Vector3(){

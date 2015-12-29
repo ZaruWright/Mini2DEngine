@@ -21,7 +21,7 @@
     <ClCompile Include="..\..\Source\Graphics\OGL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
+    <ClCompile Include="..\..\Source\Graphics\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,7 +32,7 @@
     <ClInclude Include="..\..\Source\Graphics\OGL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
+    <ClInclude Include="..\..\Source\Graphics\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "Graphics\Graphics.h"
+#include "Logic\Scene.h"
 
 namespace Game{
 
@@ -9,10 +10,10 @@ namespace Game{
 	public:
 
 		// Game Constructor
-		Game();
+		Game() = default;
 
 		// Game Destructor
-		~Game();
+		~Game() = default;
 
 		// Init the main parameters of the Game, stuff like
 		// graphics, physics, logic etc...
@@ -30,7 +31,9 @@ namespace Game{
 
 		bool finish = false; // Init the Game without finish.
 
-		Graphics::Graphics *_graphics; // Graphic engine instance.
+		Graphics::Graphics *_graphics = nullptr; // Graphic engine instance.
+		Logic::Scene *_scene = nullptr; // Main Scene, within there will be a list of entities.
+
 	};
 
 }

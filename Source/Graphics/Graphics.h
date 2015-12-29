@@ -9,10 +9,10 @@ namespace Graphics{
 	class Graphics{
 	public:
 		// Default Graphics Contructor
-		Graphics();
+		Graphics() = default;
 
 		// Default Graphics Destructor
-		~Graphics();
+		~Graphics() = default;
 
 		// Init the Graphics Engine
 		bool init();
@@ -25,7 +25,6 @@ namespace Graphics{
 
 
 	private:
-
 		OGL *gl; // GL instance.
 	};
 

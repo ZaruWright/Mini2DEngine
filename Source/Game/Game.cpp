@@ -4,20 +4,23 @@
 
 namespace Game{
 
-	Game::Game(){
-		std::cout << "Game Constructor.\n";
-	}
-
-	Game::~Game(){
-		std::cout << "Game Destructor.\n";
-	}
-
 	bool Game::init(){
 		std::cout << "Init Game.\n";
 
 		std::cout << "Init Graphics...\n";
 		_graphics = new Graphics::Graphics();
 		_graphics->init();
+
+		
+		Utils::Vector3<float> v3 (-1.5, 0.0f, -6.0f);
+		Logic::Entity ent(v3);
+
+		Utils::Vector3<float> v4(1.5, 0.0f, -6.0f);
+		Logic::Entity ent2(v4);
+		_scene = new Logic::Scene();
+		_scene->init();
+		_scene->addEntity(ent);
+		_scene->addEntity(ent2);
 
 		return true;
 	}
@@ -27,6 +30,7 @@ namespace Game{
 
 		while (!finish){
 			finish = _graphics->draw();
+			//_scene->run();
 		}
 
 		return true;
@@ -37,8 +41,12 @@ namespace Game{
 
 		std::cout << "Release Graphics.\n";
 		_graphics->release();
-		delete _graphics;
+		delete[] _graphics;
 		_graphics = nullptr;
+
+		_scene->release();
+		delete[] _scene;
+		_scene = nullptr;
 
 
 	}

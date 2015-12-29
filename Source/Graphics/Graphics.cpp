@@ -1,18 +1,9 @@
 #include "Graphics.h"
 #include "OGL.h"
-
+#include "Logic\Scene.h"
 
 
 namespace Graphics{
-
-	Graphics::Graphics(){
-
-	}
-
-
-	Graphics::~Graphics(){
-
-	}
 
 	bool Graphics::init(){
 		
@@ -28,7 +19,26 @@ namespace Graphics{
 	}
 
 	bool Graphics::draw(){
-		return gl->run();
+		bool updateWindow = gl->updateWindow();
+		if (updateWindow){
+
+			// Clear the window
+			gl->windowClear();
+
+			// Draw our entities
+			auto iterator = Logic::Scene::getEntities()->begin();
+			while (iterator != Logic::Scene::getEntities()->end()){
+				iterator->draw();
+				iterator++;
+			}
+
+			// End Drawing
+			gl->endDrawing();
+		}
+		else{
+			gl->KillGLWindow();
+		}
+		return !updateWindow;
 	}
 
 }

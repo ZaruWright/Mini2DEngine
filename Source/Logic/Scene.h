@@ -9,19 +9,30 @@ namespace Logic{
 	class Scene
 	{
 	public:
-		Scene();
-		~Scene();
+		// Default Constructor
+		Scene() = default;
 
+		// Default Destructor
+		~Scene() = default;
+
+		// Init the scene 
 		bool init();
 
-		bool release();
+		// Release the scene
+		void release();
 
-		bool addEntity();
+		// Add an entity to the scene
+		bool addEntity(Logic::Entity &entity);
 
+		// Remove an entity from the scene
 		bool removeEntity();
 
+		// Get entities
+		static std::vector<Logic::Entity>* getEntities();
+
 	private:
-		std::vector<Logic::Entity> entities;
+		static std::vector<Logic::Entity> *entities;
+
 	};
 
 

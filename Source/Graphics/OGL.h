@@ -6,7 +6,6 @@
 #include <gl\glu.h>			// Header File For The GLu32 Library
 #include "GLAux.h"		    // Header File For The Glaux Library
 
-
 namespace Graphics{
 
 	// Handle For This Window
@@ -24,7 +23,7 @@ namespace Graphics{
 		~OGL();
 
 		// Get Gl instance.
-		static Graphics::OGL *getInstance();
+		static OGL *getInstance();
 
 		// Resize and initialize the Gl window
 		GLvoid ReSizeGLScene(GLsizei width, GLsizei height);
@@ -37,16 +36,25 @@ namespace Graphics{
 		*	fullscreenflag	- Use Fullscreen Mode (TRUE) Or Windowed Mode (FALSE)	*/
 		BOOL CreateGLWindow(char* title, int width, int height, int bits, bool fullscreenflag);
 
-		// Create the window, setup GL, resize the window. It's like main.
-		BOOL run();
+		// Manage the events from the window
+		BOOL updateWindow();
+
+		// Properly Kill The Window
+		GLvoid KillGLWindow(GLvoid);
+
+		// Clear the window
+		GLvoid windowClear();
+
+		// Draw an entity 
+		BOOL drawEntity(GLfloat xPos, GLfloat yPos, GLfloat zPos);
+
+		// End drawing the scene
+		GLvoid endDrawing();
 
 	private:
 
 		// All setup for OpenGL
 		int InitGL(GLvoid);
-
-		// Properly Kill The Window
-		GLvoid KillGLWindow(GLvoid);
 
 		HDC			hDC = NULL;		// Private GDI Device Context
 		HGLRC		hRC = NULL;		// Permanent Rendering Context
@@ -54,7 +62,7 @@ namespace Graphics{
 		HINSTANCE	hInstance;		// Holds The Instance Of The Application
 
 		bool	fullscreen = FALSE;		// Fullscreen Flag Set To Fullscreen Mode By Default
-		static Graphics::OGL *_instance;
+		static OGL *_instance;
 		
 	};
 

@@ -326,15 +326,15 @@ namespace Graphics {
 		return DefWindowProc(hWnd, uMsg, wParam, lParam);
 	}
 
-	BOOL OGL::run(){
+	BOOL OGL::updateWindow(){
 		MSG		msg;									// Windows Message Structure
-		BOOL	done = false;
+		BOOL	update = true;
 
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))	// Is There A Message Waiting?
 		{
 			if (msg.message == WM_QUIT)				// Have We Received A Quit Message?
 			{
-				done = true;							// If So done=TRUE
+				update = false;							// If So done=TRUE
 			}
 			else									// If Not, Deal With Window Messages
 			{
@@ -349,24 +349,33 @@ namespace Graphics {
 			{
 				if (keys[VK_ESCAPE])				// Was ESC Pressed?
 				{
-					done = true;						// ESC Signalled A Quit
-				}
-				else								// Not Time To Quit, Update Screen
-				{
-					//DrawGLScene();					// Draw The Scene
-					glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear Screen And Depth Buffer
-					glLoadIdentity();
-					SwapBuffers(hDC);				// Swap Buffers (Double Buffering)
+					update = false;						// ESC Signalled A Quit
 				}
 			}
 		}
 
-		// Shutdown
-		if (done){
-			KillGLWindow();									// Kill The Window
-		}
-		
-		return done;
+		return update;
+	}
+
+	GLvoid OGL::windowClear(){
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear Screen And Depth Buffer
+	}
+
+	BOOL OGL::drawEntity(GLfloat xPos, GLfloat yPos, GLfloat zPos){
+
+		glLoadIdentity();									// Reset The Current Modelview Matrix
+		glTranslatef(xPos, yPos, zPos);					// Move Left 1.5 Units And Into The Screen 6.0
+		glBegin(GL_TRIANGLES);								// Drawing Using Triangles
+		glVertex3f(0.0f, 1.0f, 0.0f);							// Top
+		glVertex3f(-1.0f, -1.0f, 0.0f);							// Bottom Left
+		glVertex3f(1.0f, -1.0f, 0.0f);							// Bottom Right
+		glEnd();											// Finished Drawing The Triangle
+	
+		return TRUE;
+	}
+
+	GLvoid OGL::endDrawing(){
+		SwapBuffers(hDC);				// Swap Buffers (Double Buffering)
 	}
 
 }
